@@ -868,32 +868,37 @@ document.addEventListener("DOMContentLoaded", function() {
   const formAlert = document.getElementById("formAlert");
 
   form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    formAlert.innerHTML = '<div class="text-primary">Submitting...</div>';
+  e.preventDefault();
+  formAlert.innerHTML = '<div class="text-primary">Submitting...</div>';
 
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form)
-    })
-    .then(response => response.text())
-    .then(() => {
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      formAlert.innerHTML = `<div class="text-success fw-bold">✅ ${data.message}</div>`;
       form.reset();
-      formAlert.innerHTML = '<div class="text-success fw-bold">✅ Thank you! Your inquiry has been sent successfully.</div>';
       setTimeout(() => {
         const modal = bootstrap.Modal.getInstance(document.getElementById("inquiryModal"));
         modal.hide();
         formAlert.innerHTML = "";
-      }, 2000);
-    })
-    .catch(error => {
-      formAlert.innerHTML = '<div class="text-danger fw-bold">❌ Error submitting the form. Please try again later.</div>';
-      console.error("Error!", error.message);
-    });
+      }, 2500);
+    } else {
+      formAlert.innerHTML = `<div class="text-danger fw-bold">⚠️ ${data.message}</div>`;
+    }
+  })
+  .catch(err => {
+    formAlert.innerHTML = '<div class="text-danger fw-bold">❌ Something went wrong. Please try again later.</div>';
+    console.error(err);
   });
+});
 });
 </script>
 </body>
 </html>
+
 
 
 
