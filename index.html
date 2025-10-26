@@ -824,80 +824,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
-
-<!-- Quick Inquiry Modal -->
-<div class="modal fade" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0">
-        <h5 class="modal-title fw-bold" id="inquiryModalLabel">Send Us a Quick Inquiry</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="inquiryForm" method="POST" action="https://script.google.com/macros/s/AKfycbywV60lbZThu4gdarpSj0ZdHisSMCSr4mN-LKJEssjCOxHGyfC-4x0wz0jFlrFJjvT4tg/exec">
-          <div class="mb-3">
-            <label for="name" class="form-label fw-bold">Full Name</label>
-            <input type="text" class="form-control" id="name" name="Name" placeholder="Enter your name" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label fw-bold">Email Address</label>
-            <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label fw-bold">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" name="Phone" placeholder="Enter your phone number" required>
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label fw-bold">Message</label>
-            <textarea class="form-control" id="message" name="Message" rows="3" placeholder="Type your message here..." required></textarea>
-          </div>
-          <div id="formAlert" class="text-center mb-3"></div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary px-4">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Inquiry Form Script -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const form = document.getElementById("inquiryForm");
-  const formAlert = document.getElementById("formAlert");
-
-  form.addEventListener("submit", function(e) {
-  e.preventDefault();
-  formAlert.innerHTML = '<div class="text-primary">Submitting...</div>';
-
-  fetch(form.action, {
-    method: "POST",
-    body: new FormData(form)
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.success) {
-      formAlert.innerHTML = `<div class="text-success fw-bold">✅ ${data.message}</div>`;
-      form.reset();
-      setTimeout(() => {
-        const modal = bootstrap.Modal.getInstance(document.getElementById("inquiryModal"));
-        modal.hide();
-        formAlert.innerHTML = "";
-      }, 2500);
-    } else {
-      formAlert.innerHTML = `<div class="text-danger fw-bold">⚠️ ${data.message}</div>`;
-    }
-  })
-  .catch(err => {
-    formAlert.innerHTML = '<div class="text-danger fw-bold">❌ Something went wrong. Please try again later.</div>';
-    console.error(err);
-  });
-});
 });
 </script>
 </body>
 </html>
+
 
 
 
