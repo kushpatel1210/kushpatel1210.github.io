@@ -5,16 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Appointment - Umiya Physiotherapy Center</title>
     
-    <!-- Bootstrap CSS -->
-    <!-- FIXED: xintegrity permanently corrected to integrity -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for spinner -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20LKDR47R_F1g/j/R_rW0+N+3b1eI5v5A5e5B5C5D5F5G5H5I5J5K5L5M5N5O5P5Q5R5S5T5U5V5W5X5Y5Z" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20LKDR47R_F1g/j/R_rW0+N+3b1eI5v5A5e5B5C5D5F5G5H5I5J5K5L5M5N5O5P5Q5R5S5T5U5V5W5X5Y5Z" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Custom CSS Styles -->
     <style>
         /* General Body Styles */
         :root {
@@ -150,7 +145,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-md-9">
                     
-                    <!-- Form Card -->
                     <div class="form-card" id="formCard">
                         <div class="text-center mb-4">
                             <img src="Umiya_Logo.png" alt="Umiya Logo" style="width: 80px; height: 80px; object-fit: cover;" onerror="this.src='https://placehold.co/80x80/0d6efd/FFF?text=Logo';">
@@ -159,55 +153,54 @@
                         </div>
                         
                         <form id="appointmentForm" action="#" method="POST" onsubmit="return false;">
-                          <div class="mb-3">
-                            <label for="patientName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="patientName" placeholder="Enter your full name" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="patientPhone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="patientPhone" placeholder="Enter your phone number" required>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 mb-3">
-                              <label for="appointmentDate" class="form-label">Preferred Date</label>
-                              <input type="date" class="form-control" id="appointmentDate" required>
+                            <div class="mb-3">
+                                <label for="patientName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="patientName" placeholder="Enter your full name" required>
                             </div>
-                            <div class="col-md-6 mb-3">
-                              <label for="appointmentTime" class="form-label">Preferred Time</label>
-                              <input type="time" class="form-control" id="appointmentTime" required>
+                            <div class="mb-3">
+                                <label for="patientPhone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="patientPhone" placeholder="Enter your phone number" required>
                             </div>
-                          </div>
-                          <div class="mb-3">
-                            <label for="reasonForVisit" class="form-label">Reason for Visit</label>
-                            <select class="form-select" id="reasonForVisit" required>
-                              <option value="" selected disabled>Please select your primary concern...</option>
-                              <option value="Neck Pain">Neck Pain</option>
-                              <option value="Back Pain">Back Pain</option>
-                              <option value="Shoulder Pain">Shoulder Pain</option>
-                              <option value="Knee Pain">Knee Pain</option>
-                              <option value="Sports Injury">Sports Injury</option>
-                              <option value="Post-Surgical Rehab">Post-Surgical Rehab</option>
-                              <option value="Neurological Condition">Neurological Condition</option>
-                              <option value="Women's Health">Women's Health</option>
-                              <option value="Other">Other (Please specify below)</option>
-                            </select>
-                          </div>
-                          <div class="mb-3">
-                            <label for="patientMessage" class="form-label">Additional Message (Optional)</label>
-                            <textarea class="form-control" id="patientMessage" rows="3" placeholder="Tell us more about your condition..."></textarea>
-                          </div>
-                          
-                          <div class="d-flex justify-content-between align-items-center mt-4">
-                            <button type="button" class="btn btn-outline-dark" onclick="window.close()">Close Window</button>
-                            <button type="submit" id="submitButton" form="appointmentForm" class="btn btn-primary">
-                                <span class="spinner"><i class="fas fa-spinner fa-spin"></i></span>
-                                <span class="button-text">Request Appointment</span>
-                            </button>
-                          </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="appointmentDate" class="form-label">Preferred Date</label>
+                                    <input type="date" class="form-control" id="appointmentDate" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="appointmentTime" class="form-label">Preferred Time</label>
+                                    <input type="time" class="form-control" id="appointmentTime" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reasonForVisit" class="form-label">Reason for Visit</label>
+                                <select class="form-select" id="reasonForVisit" required>
+                                    <option value="" selected disabled>Please select your primary concern...</option>
+                                    <option value="Neck Pain">Neck Pain</option>
+                                    <option value="Back Pain">Back Pain</option>
+                                    <option value="Shoulder Pain">Shoulder Pain</option>
+                                    <option value="Knee Pain">Knee Pain</option>
+                                    <option value="Sports Injury">Sports Injury</option>
+                                    <option value="Post-Surgical Rehab">Post-Surgical Rehab</option>
+                                    <option value="Neurological Condition">Neurological Condition</option>
+                                    <option value="Women's Health">Women's Health</option>
+                                    <option value="Other">Other (Please specify below)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="patientMessage" class="form-label">Additional Message (Optional)</label>
+                                <textarea class="form-control" id="patientMessage" rows="3" placeholder="Tell us more about your condition..."></textarea>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <button type="button" class="btn btn-outline-dark" onclick="window.close()">Close Window</button>
+                                <button type="submit" id="submitButton" form="appointmentForm" class="btn btn-primary">
+                                    <span class="spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                                    <span class="button-text">Request Appointment</span>
+                                </button>
+                            </div>
                         </form>
                     </div>
 
-                    <!-- Success Message -->
                     <div id="successMessage" class="form-card text-center">
                         <h3 class="mb-3 text-success">Appointment Confirmed!</h3>
                         <p class="lead" id="successText">Your appointment has been successfully booked.</p>
@@ -215,7 +208,6 @@
                         <button type="button" class="btn btn-primary mt-3" onclick="window.close()">Close Window</button>
                     </div>
 
-                    <!-- NEW: Failure Message -->
                     <div id="failureMessage" class="form-card text-center">
                         <h3 class="mb-3">Slot Unavailable</h3>
                         <p class="lead" id="failureText">We're sorry, but that time slot is no longer available.</p>
@@ -228,16 +220,13 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <!-- FIXED: xintegrity permanently corrected to integrity -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOQVfRVzprpG5F5mI2N" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOQVfRVzprpG5F5mI" crossorigin="anonymous"></script>
 
-    <!-- Custom JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // --- IMPORTANT ---
             // This URL must be replaced with your own Google Apps Script Web App URL.
-            const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywV60lbZThu4gdarpSj0ZdHisSMCSr4mN-LKJEssjCOxHGyfC-4x0wz0jFlrFJjvT4tg/exec';
             // -----------------
 
             const appointmentForm = document.getElementById("appointmentForm");
@@ -325,4 +314,3 @@
     </script>
 </body>
 </html>
-
