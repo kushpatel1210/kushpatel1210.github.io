@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Umiya Physiotherapy</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+      .navbar {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      .dashboard-container {
+        padding: 40px 0;
+      }
+      .table-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        padding: 25px;
+      }
+      h2 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+      }
+      .btn-logout {
+        border-radius: 50px;
+        font-weight: 600;
+      }
+      .status-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: #e7f1ff;
+        color: #0d6efd;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+          <img
+            src="Umiya_Logo.png"
+            alt="Umiya Logo"
+            style="
+              height: 40px;
+              width: 40px;
+              margin-right: 12px;
+              border-radius: 50%;
+            "
+            onerror="
+              this.src = 'https://placehold.co/40x40/0d6efd/FFF?text=Logo'
+            "
+          />
+          <span>Umiya Physiotherapy Center</span>
+        </a>
+        <div class="ms-auto">
+          <button
+            class="btn btn-outline-danger btn-logout btn-sm"
+            onclick="handleLogout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container dashboard-container">
+      <div class="table-card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2>Patient Appointments</h2>
+          <button class="btn btn-primary btn-sm" onclick="fetchAppointments()">
+            Refresh Data
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Patient Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reason</th>
+                <th>Message</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentBody">
+              <tr>
+                <td colspan="8" class="text-center">Loading appointments...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Replace with your credentials
+      const SUPABASE_URL = "https://oyxafvmriefntarqzvni.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "sb_publishable_nJ1YNu-z5Z-ItPmgOA6R5g_dExnChzD";
+      const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      // Security Check: Redirect to login if not authenticated
+      async function checkUser() {
+        const {
+          data: { user },
+        } = await _supabase.auth.getUser();
+        if (!user) {
+          window.location.href = "login.html";
+        } else {
+          fetchAppointments();
+        }
+      }
+
+      async function fetchAppointments() {
+        const tbody = document.getElementById("appointmentBody");
+
+        // Fetch data from Supabase 'appointments' table
+        const { data, error } = await _supabase
+          .from("appointments")
+          .select("*")
+          .order("date", { ascending: true });
+
+        if (error) {
+          console.error("Error fetching data:", error.message);
+          // Updated colspan to 8
+          tbody.innerHTML = `<tr><td colspan="8" class="text-center text-danger">Error: ${error.message}</td></tr>`;
+          return;
+        }
+
+        if (data.length === 0) {
+          // Updated colspan to 8
+          tbody.innerHTML = `<tr><td colspan="8" class="text-center">No appointments found.</td></tr>`;
+          return;
+        }
+
+        // Clear loading text
+        tbody.innerHTML = "";
+
+        // Loop through data and create rows
+        data.forEach((app) => {
+          const row = `
+                    <tr>
+                        <td class="fw-bold">${app.name}</td>
+                        <td><a href="tel:${app.phone}" class="text-decoration-none">${app.phone}</a></td>
+                        <td><a href="mailto:${app.email}" class="text-decoration-none">${app.email || "-"}</a></td>
+                        <td>${app.date}</td>
+                        <td><span class="status-badge">${app.time}</span></td>
+                        <td>${app.reason}</td>
+                        <td class="small text-muted">${app.message || "-"}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-success" onclick="confirmAppt('${app.phone}')">Call</button>
+                        </td>
+                    </tr>
+                `;
+          tbody.innerHTML += row;
+        });
+      }
+
+      async function handleLogout() {
+        await _supabase.auth.signOut();
+        window.location.href = "login.html";
+      }
+
+      function confirmAppt(phone) {
+        window.location.href = `tel:${phone}`;
+      }
+
+      // Initialize page
+      checkUser();
+    </script>
+  </body>
+</html>
