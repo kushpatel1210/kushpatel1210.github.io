@@ -15,6 +15,7 @@
     <!-- Font Awesome Icons -->
     <!-- FIXED: Corrected broken Font Awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/20LKDR47R_F1g/j/R/RC/pT6geB//R/N/e/tR/r/g/i/s/s/S/p/i/i" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 
     <!-- Custom CSS Styles -->
     <style>
@@ -505,7 +506,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#home">Home</a>
                     </li>
@@ -523,6 +524,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="login.html" class="btn btn-primary btn-sm px-4">Admin Login</a>
                     </li>
                 </ul>
             </div>
@@ -663,41 +667,51 @@
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-5"> 
         <div class="container text-center">
-            <h2 class="display-5 fw-bold mb-5 reveal-on-scroll">Patient Testimonials </h2>
+            <h2 class="display-5 fw-bold mb-5 reveal-on-scroll">Patient Testimonials</h2>
+            
             <div class="video mb-4 reveal-on-scroll">
-                <iframe width="300" height="200" src="https://www.youtube.com/embed/JKikBx1lg0M?si=M2qFou_5RYeqS8Ab" frameborder="0" allowfullscreen style="border-radius: 15px;"></iframe>
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/JKikBx1lg0M?si=M2qFou_5RYeqS8Ab" frameborder="0" allowfullscreen style="border-radius: 15px; border: 1px solid #dee2e6;"></iframe>
             </div>
             <div class="video mb-4 reveal-on-scroll" style="transition-delay: 100ms;">
-                <iframe width="300" height="200" src="https://www.youtube.com/embed/LbWBWDn4KWg?si=5WOrygnbnbbUXwCC" frameborder="0" allowfullscreen style="border-radius: 15px;"></iframe>
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/LbWBWDn4KWg?si=5WOrygnbnbbUXwCC" frameborder="0" allowfullscreen style="border-radius: 15px; border: 1px solid #dee2e6;"></iframe>
             </div>
             
             <div id="testimonialCarousel" class="carousel slide reveal-on-scroll" data-bs-ride="carousel" style="transition-delay: 200ms;">
                 <div class="carousel-inner">
-                    <!-- Carousel Item 1 (Active) -->
                     <div class="carousel-item active">
-                        <div class="card p-4 mx-auto" style="max-width: 700px;">
-                            <blockquote class="blockquote mb-0">
-                                <p class="lead mb-3">"Professional, friendly, and effective. My recovery from a sports injury was much faster than I expected, thanks to Umiya Physiotherapy."</p>
-                                <footer class="blockquote-footer"><strong>Amit Singh</strong>, Patient</footer>
-                            </blockquote>
+                        <div class="card p-4 mx-auto border-0 shadow-sm" style="max-width: 700px; background-color: #ffffff;">
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="lead mb-3" style="color: #555; font-weight: 500;">"Professional, friendly, and effective. My recovery from a sports injury was much faster than I expected, thanks to Umiya Physiotherapy."</p>
+                                    <footer class="blockquote-footer mt-2" style="background-color: transparent; border: none;">
+                                        <strong style="color: var(--bs-primary); font-size: 1.1rem;">Amit Singh</strong>
+                                        <span style="color: var(--bs-primary); font-weight: 600;">, Patient</span>
+                                    </footer>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
-                    <!-- Carousel Item 2 (Add more as needed) -->
                     <div class="carousel-item">
-                        <div class="card p-4 mx-auto" style="max-width: 700px;">
-                             <blockquote class="blockquote mb-0">
-                                <p class="lead mb-3">"The care and personal attention I received were outstanding. I highly recommend Dr. Patel and his team to anyone in need of physiotherapy."</p>
-                                <footer class="blockquote-footer"><strong>Priya Sharma</strong>, Patient</footer>
-                            </blockquote>
+                        <div class="card p-4 mx-auto border-0 shadow-sm" style="max-width: 700px; background-color: #ffffff;">
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="lead mb-3" style="color: #555; font-weight: 500;">"The care and personal attention I received were outstanding. I highly recommend Dr. Patel and his team to anyone in need of physiotherapy."</p>
+                                    <footer class="blockquote-footer mt-2" style="background-color: transparent; border: none;">
+                                        <strong style="color: var(--bs-primary); font-size: 1.1rem;">Priya Sharma</strong>
+                                        <span style="color: var(--bs-primary); font-weight: 600;">, Patient</span>
+                                    </footer>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
                 </div>
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1) grayscale(100) brightness(0.4);"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1) grayscale(100) brightness(0.4);"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
@@ -811,11 +825,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
